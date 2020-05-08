@@ -4,4 +4,5 @@ http.createServer = (function(req,res) {
     res.end();
 }).listen(3000, function(){
     console.log('server started at port 3000');
+    
 });
