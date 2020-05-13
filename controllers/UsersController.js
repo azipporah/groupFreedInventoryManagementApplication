@@ -21,7 +21,9 @@ db.on("error", () => {
 
 module.exports = {
 
-    //Handle incoming POST requests to to add Items
+    /**Handle incoming POST requests to to add Items
+     * localhost:5990/inventory 
+    */
     PostInventory: (req, res) => {
         const NewInventory = new Inventory({
             _id: new mongoose.Types.ObjectId,
@@ -48,7 +50,9 @@ module.exports = {
 
 
 
-    // Retrieve all categories from the database.
+    /**  Retrieve all categories from the database.
+     * localhost:5990/inventory/category
+    */
     GetCategory: (req, res) => {
          Category.find()
         .select('category')
@@ -69,7 +73,9 @@ module.exports = {
         });
     },
 
-     // Find Fetch Specific Category
+     /**  Find Fetch Specific Category 
+      * localhost:5990/inventory/1
+     */
     GetCategoryId: (req, res) => {
         Category.find({categoryId: req.params.categoryId})
         // .select('name description category price number_in_stock')
@@ -96,7 +102,9 @@ module.exports = {
         });
     },    
 
-    // Retrieve all items in the given category from the database.
+    /** Retrieve all items in the given category from the database.
+     * localhost:5990/inventory/4/items
+    */
     GetItem: (req, res) => {
         Category.find({categoryId: req.params.categoryId})
         .select('name description')
@@ -113,7 +121,9 @@ module.exports = {
         });
     },
 
-     // Find a single item with a itemId
+     /**  Find a single item with a itemId 
+      * localhost:5990/inventory/4/items/cable knit => name of item
+     */
     GetItemid: (req, res) => {
 
         Category.findOne({name: req.params.itemsId})
@@ -140,7 +150,9 @@ module.exports = {
         });
     },
 
-// Delete a product with the specified productId in the request
+    /** Delete an Item with the specified ItemId in the request 
+     * localhost:5990/inventory/4/items/cable knit
+    */
     DeletItemid: (req, res) => {
     Category.deleteOne({name: req.params.itemsId})
     .exec()
@@ -153,28 +165,6 @@ module.exports = {
             error: err
         });
     });
-    },
-
-    // Retrieve all items in the whole inventory from the database.
-    GetInventory: (req, res) => {
-        Inventory.find()
-        .exec()
-        .then(docs => {
-            
-            const response = {
-                count: docs.length,
-                inventory: docs
-            }
-            console.log(docs);
-            res.status(200).json(response);
-
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
     }
 
 }
