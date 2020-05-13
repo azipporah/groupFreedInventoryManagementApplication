@@ -1,8 +1,7 @@
 //validation
 const Joi = require('joi');
-//const Joigoose = require('joigoose')(mongoose, { convert: false });
 
-    //create a schema
+    //create a registerUser schema
     const registerValidation = (data) => {
         const schema = {
             firstname: Joi.string()
@@ -31,7 +30,7 @@ const Joi = require('joi');
     return Joi.validate(data, schema); 
    }
 
-   //create a schema
+   //create a  login schema
    const loginValidation = (data) => {
     const schema = {
         username: Joi.string()
@@ -44,7 +43,7 @@ const Joi = require('joi');
                 .regex(/[a-zA-Z0-9]{3,30}/)
                 .required(),
 };
-return Joi.validate(data, Schema); 
+return Joi.validate(data, schema); 
 }
 
    module.exports.registerValidation = registerValidation;

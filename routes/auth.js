@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const userModel = require('../models/userModel.js');//import model you're gonna post to.
-const {registerValidation} = require('../routes/validation');
+const {registerValidation,loginValidation} = require('../routes/validation');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
+//REGISTER A NEW USER
  //submit a post( create a user)
   router.post('/register',async (req,res) => {
 
-// //validate data before creation of the user
+//validate data before creation of the user
     const {error} = registerValidation(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -15,13 +18,17 @@ const {registerValidation} = require('../routes/validation');
     const emailExists = await userModel.findOne({email: req.body.email});
     if(emailExists) return res.status(400).send("Oops, email already exists");
 
+    //hashing the password
+    const salt = await bcrypt.genSalt(10);//generate the salt and hash the password with this salt
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);//creates a mess of the password and only bcrypt can decrypt it
+
         //create new user
       const model = new userModel({
         firstname : req.body.firstname,
         lastname : req.body.lastname,
         username : req.body.username,
         email : req.body.email,
-        password : req.body.password
+        password : hashedPassword
       }); 
     
     try{
@@ -30,6 +37,29 @@ const {registerValidation} = require('../routes/validation');
     }catch(err){
         res.status(404).send(err);
     }  
+  });
+
+  //LOGIN OF A USER
+  router.post('/login', async (req,res) =>{
+    
+    //validate data before creation of the user
+    const {error} = loginValidation(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    //checking db if username already exists
+    const user = await userModel.findOne({username: req.body.username});
+    if(!user) return res.status(400).send("Oops, user doesn't exists.");
+
+    //checking db if password is correct
+    const validPassword = await bcrypt.compare(req.body.password, user.password);//compares input password to the hased password
+    if(!validPassword) return res.status(400).send("Oops, invalid password.");
+
+    //create and assign a token
+    const token = jwt.sign({_id: user._id}, process.env.secret_token);
+    res.header('authToken',token).send(token);
+
+    //res.send('Successfully logged in');
+    
   });
 
   //get back all the posts(added users)
