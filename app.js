@@ -8,6 +8,8 @@ const router = require("./routes/router");
 const UsersRouter = require('./routes/UsersRouter');
 const putRouter = require("./routes/router");
 
+const ItemsRouter = require('./routes/ItemsRouter');
+
 
 
 //to keep important info from public
@@ -23,6 +25,7 @@ app.use(cors());
 app.use('/', authRoute);//middleware for the router
 app.use(UsersRouter);
 app.use(putRouter);
+app.use(ItemsRouter);
 
 app.use(router);
 

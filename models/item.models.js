@@ -1,20 +1,28 @@
 const mongoose = require('mongoose');
- 
+const Schema = mongoose.Schema; 
 //Attributes of the item object
-var itemSchema = new mongoose.Schema({
-itemName: {
-type: String,
-required: 'This field is required!'
-},
-itemId: {
-type: String
-},
-itemCategory: {
-type: String
-},
-itemCost: {
-type: String
-}
-});
+const itemsSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        required: true
+    },
+    number_in_stock: {
+        type: Number,
+        required: true
+    }
+    });
  
-mongoose.model('item', itemSchema);
+    module.exports = itemsSchema;

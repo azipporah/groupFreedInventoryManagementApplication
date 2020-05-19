@@ -49,59 +49,6 @@ module.exports = {
     },
 
 
-
-    /**  Retrieve all categories from the database.
-     * localhost:5990/inventory/category
-    */
-    GetCategory: (req, res) => {
-         Category.find()
-        .select('category')
-        .exec()
-        .then(docs => {
-            const response = {
-                count: docs.length,
-                category: docs
-            }
-            console.log(docs);
-            res.status(200).json(response);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-    },
-
-     /**  Find Fetch Specific Category 
-      * localhost:5990/inventory/1
-     */
-    GetCategoryId: (req, res) => {
-        Category.find({categoryId: req.params.categoryId})
-        // .select('name description category price number_in_stock')
-        .exec()
-        .then(doc => {
-            console.log('From database', doc);
-            
-            if(doc){
-                res.status(201).json({
-                    message: "Successfuly retrieved a single category using get request",
-                    categoryId: doc.categoryId,
-                    createdCategory: doc
-                });
-            } else {
-                res.status(404).json({
-                    message: "Invalid entry entered for the ID"
-                })
-            }
-            
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-    },    
-
     /** Retrieve all items in the given category from the database.
      * localhost:5990/inventory/4/items
     */
