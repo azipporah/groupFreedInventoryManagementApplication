@@ -1,4 +1,4 @@
-const db = require("../config/con");
+const db = require("../con");
 
 const Item = require("../models/Item");
 
