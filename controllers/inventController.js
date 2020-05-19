@@ -1,16 +1,12 @@
 const inventory = require("../models/inventory");
 
 module.exports = {
+    /** localhost:5990/_id 
+     * where _id is the one for the inventory you want to delete
+    */
     putStock:(req, res)=>{
         //update already existing stock
-        inventory.updateOne({
-            categoryId: req.body.categoryId,
-            name: req.body.name,
-            description: req.body.description,
-            category: req.body.category,
-            price: req.body.price,
-            number_in_stock: req.body.number_in_stock
-        })
+        inventory.findByIdAndUpdate({_id:req.params.inventory}, req.body)
         .exec()
         .then(result => {
             res.status(200).json({
@@ -25,10 +21,13 @@ module.exports = {
         })
     },
     
+    /** localhost:5990/_id 
+     * where _id is the one for the inventory you want to delete
+    */
     deleteStock:(req, res)=>{
         //delete stock from inventory
         inventory.deleteOne({
-            category: req.params.category
+            _id: req.params.inventory
         })
         .exec()
         .then(result => {

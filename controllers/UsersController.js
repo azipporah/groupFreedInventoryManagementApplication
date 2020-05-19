@@ -110,8 +110,12 @@ module.exports = {
         .select('name description')
         .exec()
         .then(docs => {
+            const response = {
+                count: docs.length,
+                items: docs
+            }
             console.log(docs);
-            res.status(200).json(docs);
+            res.status(200).json(response);
         })
         .catch(err => {
             console.log(err);
