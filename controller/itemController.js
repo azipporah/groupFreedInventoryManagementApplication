@@ -4,6 +4,7 @@ var router = express.Router();
 //Link
 const Items = require('../models/Items');
 const Inventory = require('../models/Inventory');
+const Category = require('../models/Category');
  
 //Router Controller for READ request
 router.get('/',(req, res) => {

@@ -2,7 +2,7 @@ const inventory = require("../models/inventory");
 
 module.exports = {
     /** localhost:5990/_id 
-     * where _id is the one for the inventory you want to delete
+     * where _id is the one for the inventory you want to Update
     */
     putStock:(req, res)=>{
         //update already existing stock
