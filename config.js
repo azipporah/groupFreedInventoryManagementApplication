@@ -1,13 +1,13 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
 //to keep important info from public
 //require('dotenv/config');
-dotenv.config();
+// dotenv.config();
 
-mongoose.connect(process.env.db_connection, {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect(process.env.db_connection, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
-module.exports = db;
+// module.exports = db;

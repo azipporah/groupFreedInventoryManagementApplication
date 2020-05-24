@@ -20,8 +20,12 @@ res.send
 app.use(bodyparser.json());
  
 //Establish the server connection
-const port = process.env.PORT || 6000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// const port = process.env.PORT || 6000;
+// app.listen(port, () => console.log(`Listening on port ${port}`));
+
+app.listen(3000, function(){
+    console.log('server started at port 3000');    
+});
  
 //Set the Controller path which will be responding to the user actions
 app.use('/item', itemController);

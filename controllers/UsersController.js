@@ -10,14 +10,14 @@ const mongoose = require('mongoose');
 
 
 //get notified if we connected successfully to the database
-db.once("open", () => {
-    console.log("CONNECTION STATUS: ", "CONNECTION SUCCESSFUL!");
-});
+// db.once("open", () => {
+//     console.log("CONNECTION STATUS: ", "CONNECTION SUCCESSFUL!");
+// });
 
 // or get notified if a connection error occurs
-db.on("error", () => {
-    console.log("CONNECTION STATUS: ", "CONNECTION FAILED!");
-});
+// db.on("error", () => {
+//     console.log("CONNECTION STATUS: ", "CONNECTION FAILED!");
+// });
 
 module.exports = {
 
