@@ -11,7 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/azipporah/groupFreedInventoryManagementApplication.git"
   },
-  "keywords": [],
+  "keywords": [
+    "example",
+    "heroku"],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -31,5 +33,8 @@
     "mongoose": "^5.9.14",
     "nodemon": "^2.0.4"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "v12.16.2"
+  }
 }
