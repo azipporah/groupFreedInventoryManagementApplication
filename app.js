@@ -31,8 +31,6 @@ app.listen(3000, function(){
 });
 
 //connect to database
-// For mongodb compass : db_connection = mongodb://localhost/mensClothingdb
-
 mongoose.connect(process.env.db_connection, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
     console.log('Connected to db')
 );
