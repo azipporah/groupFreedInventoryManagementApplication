@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 //to keep important info from public
-// require('dotenv/config');
+//require('dotenv/config');
 dotenv.config();
 
 //Import routes
