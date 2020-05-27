@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 //to keep important info from public
-//require('dotenv/config');
-dotenv.config();
+require('dotenv/config');
+// dotenv.config();
 
 //Import routes
 const authRoute = require('./routes/auth');
@@ -18,8 +18,8 @@ app.use(cors());
 app.use('/', authRoute);//middleware for the router
 
 //to connect to the server
-app.listen(3000, function(){
-    console.log('server started at port 3000');    
+app.listen(4550, function(){
+    console.log('server started at port 4550');    
 });
 
 //connect to database
