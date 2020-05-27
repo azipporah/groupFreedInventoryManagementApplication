@@ -26,8 +26,8 @@ app.use(ItemsRouter);
 app.use(router);
 
 //to connect to the server
-app.listen(3000, function(){
-    console.log('server started at port 3000');    
+app.listen(4550, function(){
+    console.log('server started at port 4550');    
 });
 
 //connect to database

@@ -1,6 +1,6 @@
 //using the express promise router
 const router = require('express-promise-router')();
-const {GetInventory, GetCategory, GetCategoryId} = require('../controller/itemController');
+const {GetInventory, GetCategory, GetCategoryId} = require('../controllers/itemController');
 
 router.route("/:inventory").get(GetInventory);
 router.route('/inventory/category').get(GetCategory);
