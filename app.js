@@ -7,14 +7,11 @@ const cors = require('cors');
 const router = require("./routes/router");
 const UsersRouter = require('./routes/UsersRouter');
 const putRouter = require("./routes/router");
-
 const ItemsRouter = require('./routes/ItemsRouter');
 
-
-
 //to keep important info from public
-//require('dotenv/config');
-dotenv.config();
+require('dotenv/config');
+// dotenv.config();
 
 //Import routes
 const authRoute = require('./routes/auth');
@@ -26,7 +23,6 @@ app.use('/', authRoute);//middleware for the router
 app.use(UsersRouter);
 app.use(putRouter);
 app.use(ItemsRouter);
-
 app.use(router);
 
 //to connect to the server
@@ -35,8 +31,8 @@ app.listen(3000, function(){
 });
 
 //connect to database
-//db_connection = mongodb+srv://azipporah:genesis@azipporah-kv07y.mongodb.net/test?retryWrites=true&w=majority
-//For mongodb compass : db_connection = mongodb://localhost/mensClothingdb
+// For mongodb compass : db_connection = mongodb://localhost/mensClothingdb
+
 mongoose.connect(process.env.db_connection, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
     console.log('Connected to db')
 );
